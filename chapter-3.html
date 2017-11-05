@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="author" content="Sergej Müller" />
+		<meta name="robots" content="noindex" />
+		
+		<link rel="stylesheet" href="style.css" />
+		
+		<title>Caching im Browser</title>
+	</head>
+	
+	<body id="chapter-3">
+		<h1>
+			Caching im Browser
+		</h1>
+		
+		
+		<p>
+			Für Caching auf der Server-Seite wurde dank Cachify vorgesorgt: Fertig produzierte Dateien liegen zur Auslieferung bereit. Die begonnene Optimierung der Blogseiten ist jedoch erst dann vollständig abgeschlossen, wenn das Caching auch im Client (= Browser) initialisiert wurde.
+		</p>
+		
+		<p>
+			<h4>
+				Informationsübermittlung via Header
+			</h4>
+			Beim Abruf einer Webseite sendet der Server vorgefertigte Informationen an den Browser zurück. Diese Kopfzeilen (= Header) dienen als Kommunikationsmedium zwischen Server und Browser. Zudem beinhalten sie Einstellungswerte und Handlungsanweisungen beispielsweise für die Aufbewahrungsdauer der Dateien im lokalen Browser-Speicher. Das hat im Wesentlichen den Vorteil, dass der Browser Dateien nicht länger beim Server anfragt. Vielmehr kommen Ressourcen aus dem Festplatten-Speicher des heimischen Rechners oder mobilen Endgeräts. Durch den deutlich kürzeren Weg (lokal &harr; lokal) beschleunigt sich die Anzeige eines angeforderten Elements.
+		</p>
+		
+		<p>
+			<h4>
+				Haltbarkeitsdatum für Dateien
+			</h4>
+			Für einzelne Dateitypen kann innerhalb der <em>.htaccess</em> ein Verfallsdatum festgelegt werden: Bis zu diesem Zeitpunkt hält der Client die Dateien eines Typs auf der Festplatte zurück und referenziert sie entsprechend. Nach dem Ablauf der Zeitgrenze kontaktiert der Browser den Server und erhält die angeforderte Datei zur Anzeige. Das neue Zieldatum zur lokalen Aufbewahrung eines Elements schickt der Server ebenfalls mit.
+		</p>
+		<p>
+			Nach diesem Muster funktioniert die moderne Caching-Technologie im Browser, die für extrem rasche Seitendarstellung im Web aufkommt. Das Motto: Statische Elemente wie Bilder, Schriften, CSS und JavaScript so lange wie möglich auf der Festplatte des Nutzers vorhalten. Erst bei Bedarf durch neue Versionen aktualisieren.
+		</p>
+		
+		<p>
+			<h4>
+				Aufbewahrungszeit je nach Dateityp
+			</h4>
+			Doch welche Zeiträume der Gültigkeit eignen sich für einzelne Dateitypen? Die Antwort ist relativ einfach zu beantworten: Stylesheets und JavaScript erfahren kaum Updates, da fest im Theme verankert. Bilder kommen neue dazu, selten werden bestehende Grafikelemente verändert. Für diese Dateiarten gilt eine Cache-Lebensdauer von einem Monat als ausreichend - häufiger kommt ein Update der Objekte nicht vor. Kleinerer Zeitraum sollte es nicht sein, da selbst Google PageSpeed einen Wert von mindestens 30 Tagen als Empfehlung festlegt.
+		</p>
+		<p>
+			Blogseiten und Feeds werden dagegen überdurchschnittlich oft erneuert: Hinzukommende Kommentare, angelegte und editierte Artikel sorgen für eine geringere Lebenserwartung einer HTML-Seite. Je nach Blog kann der Wert zur Zwischenspeicherung von Webseiten sehr unterschiedlich ausfallen. Gute Durchschnittswerte bewegen sich im Sekundenbereich. Eine Null als Angabe ist ebenfalls möglich und besagt: Kein lokaler Cache gewünscht, da sich die Inhalte zu oft auffrischen.
+		</p>
+		<p>
+			Je nach Anforderung und Größe eines Projektes variiert der Gültigkeitswert für die Cache-Dauer der HTML-Seiten im Browser. Exemplarisch würde eine CMS-Website mit gelegentlichen Beiträgen und ohne einer Kommentarfunktion eine deutlich höhere Zahl vertragen. Ein Tag als Limit wäre in diesem Fall perfekt.
+		</p>
+		
+		<p>
+			<h4>
+				Cache-Steuerung in der Datei .htaccess
+			</h4>
+			Aus Platzgründen wird erneut auf eine externe Ressource verwiesen - sie bildet oben präsentierte Cache-Header in Form eines übersichtlichen Snippets ab: <a href="https://gist.github.com/3316234" target="_blank">https://gist.github.com/3316234</a>
+		</p>
+		<p>
+			Zusätzlich befinden sich in der Code-Vorlage hilfreiche Anweisungen zu folgenden Disziplinen:
+		</p>
+		<p>
+			&bull; Umstellung der Kodierung auf UTF-8
+			<br />
+			&bull; GZIP-Komprimierung der Dateien
+			<br />
+			&bull; Ausgabe weiterer Kopfzeilen (Header)
+		</p>
+		<p>
+			Der abgebildete Gist-Auszug gehört in die bereits erwähnte Datei <em>.htaccess</em> an jede beliebige Stelle eingefügt. Die tadellose Erreichbarkeit des Blogs ist nach dem Speichervorgang zu kontrollieren.
+		</p>
+		
+		<p>
+			<img src="img/flag.png" class="flag" alt="Info" />Die Zeitspanne für die Cache-Geltungsdauer lässt sich wie angekündigt nach eigenen Bedürfnissen justieren. Aus <em>access plus 0 seconds</em> (siehe Snippet) kann schnell <em>access plus 1 hour</em> (lokaler Cache für 1 Stunde) oder <em>access plus 1 day</em> (lokaler Cache für 1 Tag) werden.
+		</p>
+		
+		<p>
+			<h4>
+				Zusammenfassung
+			</h4>
+			Im Abschluss der Blog-Optimierungen erreicht Google PageSpeed Score in einem Test-Blog mit WordPress Standard-Theme stolze 98 Punkte. Eine beachtliche Hochleistung. Die restliche Punktezahl (100 - 98 = 2) wäre nur gegen eine Modifizierung der Theme-Templates zu erreichen.
+		</p>
+	</body>
+</html>

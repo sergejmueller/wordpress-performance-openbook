@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="author" content="Sergej Müller" />
+		<meta name="robots" content="noindex" />
+		
+		<link rel="stylesheet" href="style.css" />
+		
+		<title>Weitere Tipps</title>
+	</head>
+	
+	<body id="chapter-4">
+		<h1>
+			Weitere Tipps
+		</h1>
+		
+		
+		<p>
+			<h4>
+				1. Feingetunte WordPress-Umleitung
+			</h4>
+			Kaum einem Blogger ist die Optimierung der internen RewriteRules aufgefallen, die WordPress seit Version 3.0 mitbringt. Bedauerlicherweise erhalten bestehende Blogs keine automatische Aktualisierung dieser Weiterleitungsregel. Doch die hinzugefügte Zeile bringt enorme Performance und darf in modernen WordPress-Installationen keinesfalls fehlen.
+		</p>
+		<p>
+			Der triviale Schritt, die neuste Fassung der Weiterleitung zu bekommen, ist eine wiederholte Speicherung der Permalink-Struktur im Administrationsbereich.
+		</p>
+		<p>
+			Andernfalls den Redirect-Code aus der Blog-eigenen Datei <em>.htaccess</em> mit nachfolgendem (korrektem) Auszug abgleichen und gegebenenfalls anpassen.
+		</p>
+		<code># BEGIN WordPress</code><br />
+		<code>&lt;IfModule mod_rewrite.c></code><br />
+		<code>&nbsp;&nbsp;RewriteEngine On</code><br />
+		<code>&nbsp;&nbsp;RewriteBase /</code><br />
+		<code>&nbsp;&nbsp;RewriteRule ^index\.php$ - [L]</code><br />
+		<code>&nbsp;&nbsp;RewriteCond %{REQUEST_FILENAME} !-f</code><br />
+		<code>&nbsp;&nbsp;RewriteCond %{REQUEST_FILENAME} !-d</code><br />
+		<code>&nbsp;&nbsp;RewriteRule . /index.php [L]</code><br />
+		<code>&lt;/IfModule></code><br />
+		<code># END WordPress</code>
+		
+		
+		<p>
+			<h4>
+				2. Durchweg Up-to-Date bleiben
+			</h4>
+			Der Ratschlag hört sich banal an: WordPress, Plugins und das Theme allzeit auf dem neuesten Stand halten. Insbesondere sind Core-Entwickler aus dem offiziellen WordPress-Team sehr zielstrebig und liefern mit jeder Aktualisierung einen Performance-Schub - auch wenn die Beschleunigung der Software mit unbewaffnetem Auge nicht immer gleich wahrzunehmen ist.
+		</p>
+
+		<p>
+			<h4>
+				3. So viel wie nötig, so wenig wie möglich
+			</h4>
+			Die Anzahl der aktiven Plugins spielt bei <em>Festplatte</em> als Caching-Methode in Cachify keine gewichtige Rolle. Dessenungeachtet sollte jede in WordPress aktive Drittanwendung auf die goldene Waage gelegt werden. Selbst hochwertig programmierte Plugins verbrauchen Arbeitsspeicher und beanspruchen Ausführungszeit. Dito Cronjobs.
+		</p>
+		
+		<p>
+			<h4>
+				4. Bilder in der Größe reduzieren
+			</h4>
+			Aus Gründen der Performance-Optimierung empfiehlt es sich, in WordPress hochgeladene Bilder in der Größe zu reduzieren. Mit jedem eingesparten Kilobyte steigt die Geschwindigkeit der Auslieferung. Die Optimierung der Medien kann das kostenlose WordPress-Plugin <em>Optimus</em> übernehmen. Automatisch und ohne Qualitätsverlust. Download unter: <a href="http://wordpress.org/extend/plugins/optimus/" target="_blank">wordpress.org/extend/plugins/optimus/</a>
+		</p>
+		
+		<p>
+			<h4>
+				5. PageSpeed als Analysewerkzeug
+			</h4>
+			Als letzter Ratschlag im Buch sind Google PageSpeed Tools betont zu empfehlen: Durch Eigenverfahren analysiert Google hinterlegte Webseiten und liefert verständliche Optimierungsvorschläge für Bereiche <em>Header</em>, <em>Ressourcen</em>, <em>Komprimierung</em>, etc. Als Browser-Erweiterung und Online-Service kostenlos erhältlich.
+		</p>
+	</body>
+</html>

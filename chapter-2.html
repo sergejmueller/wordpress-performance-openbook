@@ -1,0 +1,571 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="author" content="Sergej Müller" />
+		<meta name="robots" content="noindex" />
+		
+		<link rel="stylesheet" href="style.css" />
+		
+		<title>Caching mit Cachify</title>
+	</head>
+	
+	<body id="chapter-2">
+		<h1>
+			Caching mit Cachify
+		</h1>
+		
+		
+		
+		<h2 id="installation">
+			Installation
+		</h2>
+		
+		<p>
+			Die Optimierungen der Ladezeiten beginnen mit der Installation von Cachify, einem kostenlosen Plugin mit Caching-Mechanismen als Schwerpunkt. Die WordPress-Erweiterung unterscheidet sich von konkurrierenden Produkten durch ihre leichtgewichtige, aber solide Bauweise mit überzeugenden Ergebnissen. Kompakt, übersichtlich, schnell.
+		</p>
+		
+		<p>
+			Ein Plugin kann in WordPress auf drei unterschiedliche Wege in Betrieb genommen werden. Die erste Methode aus der folgenden Liste ist zu bevorzugen, da die Inbetriebnahme prompt und verzögerungsfrei vonstatten geht:
+		</p>
+		
+		<p>
+			<strong>1.</strong> In WordPress gezielt nach einem Plugin suchen. Und zwar direkt im Administrationsbereich im Menüpunkt <em>Plugins</em>. Unter <em>Installieren &rarr; Suchen</em> kann im Eingabefeld der Name der gesuchten Erweiterung eingegeben werden. Die Suche nach <em>Cachify</em> würde Plugin-Details zum Vorschein bringen, woraus die Anwendung ohne Umwege installiert werden kann.
+		</p>
+		<p>
+			<strong>2.</strong> Ebenfalls im Bereich <em>Plugins</em> steht dem Nutzer eine Unterseite <em>Hochladen</em> mit einem Formular zur Übertragung komprimierter Dateien zur Verfügung. Wo bekommt man solch eine Plugin-Datei her? Per Klick auf die Schaltfläche <em>Download</em> generiert die Plugin-Seite <a href="http://cachify.de" target="_blank">http://cachify.de</a> die erforderliche ZIP-Datei mit Plugin-Inhalten. Nach dem Download wird die Datei im erwähnten Formular ausgewählt und anschließend abgeschickt. WordPress entpackt das Archiv und installiert das extrahierte Plugin.
+		</p>
+		<p>
+			<strong>3.</strong> Die letzte Möglichkeit ein Plugin in WordPress aufzuspielen: Die eben herunter geladene ZIP-Datei auf dem lokalen Desktop extrahieren und den resultierenden Ordner <em>cachify</em> inklusive Inhalte per (S)FTP direkt ins Verzeichnis mit WordPress-Plugins übertragen. Der Zielordner der Sendung wäre also <em>/wp-content/plugins/</em>.
+		</p>
+		
+		<p>
+			Im Vergleich zu den ersten beiden Techniken, muss das manuell hochgeladene Plugin im WordPress-Backend händisch aktiviert werden. Erst dann ist das Tool erfolgreich initialisiert und steht zur Nutzung bereit.
+		</p>
+		
+		
+		
+		<h2 id="funktionsweise">
+			Funktionsweise
+		</h2>
+		
+		<p>
+			Ist Cachify aktiv, kann mit Einstellungen begonnen werden. Doch bis es soweit ist, soll an dieser Stelle flüchtig die technische Funktionsweise der Erweiterung erläutert werden. Kurz und bündig, versprochen.
+		</p>
+		<p>	
+			All die im Blog installierten Plugins, Widgets und Skripte aus der <em>functions.php</em> werden bei jedem Seitenaufruf immer wieder aufs Neue analysiert und dynamisch abgearbeitet. Die wunderbare Welt der Dynamik und alle Arten des Automatismus kosten hingegen Serverlast und Ausführungszeit.
+		</p>
+		<p>	
+			Warum also nicht gleich alle Seiten eines Blogs in statischer Form ablegen? Also die Ansicht einer Seite, die der Leser angezeigt bekommt. Diese Perspektive speichert das Plugin auf der Festplatte (= HDD) des Servers zwischen. Und zwar so lange, bis Inhalte sich ändern. Zum Beispiel durch neue Artikel oder Kommentare. Per Hand kann der Cache ebenso zurückgesetzt werden.
+		</p>
+		
+		<p>
+			Welche Vorteile bringt dieser Denkansatz? Vier Argumente:
+		</p>
+		
+		<p>
+			<strong>1.</strong> Kein Start des PHP-Interpreters auf dem Server. Zwischengespeicherte Webseiten liegen in finalem HTML-Format vor und benötigen keine PHP-Generierung.
+		</p>
+		<p>
+			<strong>2.</strong> Die zeitraubende Konnektivität zur Datenbank entfällt. Alle Seiten sind bereits produziert und im Cache-Ordner abgelegt.
+		</p>
+		<p>
+			<strong>3.</strong> Der Server wartet nicht länger auf den dynamischen Zusammenbau der Webseiten durch PHP und kann die angeforderte Blogseite unverzüglich an den Browser senden. Cachify stellt dem Server eine komprimierte Variante der jeweiligen Cache-Datei bereit, die dafür Sorge trägt, dass Ladezeiten und Traffic weiter reduziert werden.
+		</p>
+		<p>
+			<strong>4.</strong> WordPress bleibt stumm. Die Umleitung einer Blogseite auf das Gegenstück im Cache übernimmt der Server mithilfe der bereits angesprochenen Datei <em>.htaccess</em>. Ab sofort spielt die Anzahl und die Qualität der installierten Plugins und Widgets für die Anfertigung der Seiten keine Rolle mehr. Über den Administrationsbereich kann WordPress weiterhin genutzt, neue Artikel veröffentlich werden.
+		</p>
+			
+		<p>
+			HDD-Caching kann die Geschwindigkeit der Seitenausgabe um bis zu 70 Prozent erhöhen. Bei WordPress-Themes mit überdurchschnittlich vielen Widgets und verknüpften Plugins kann der Leistungsgewinn deutlich stärker ausfallen.
+		</p>
+		<p>
+			Ist Cachify korrekt installiert und konfiguriert, trägt es aktiv der Geschwindigkeitsoptimierung bei und sorgt für den größten Gewinnanteil unter bekannten Performance-Techniken.
+		</p>
+		
+		
+		
+		<h2 id="methoden">
+			Caching-Methoden
+		</h2>
+		
+		<p>
+			In den WordPress-Einstellungen stehen Blog-Administratoren zahlreiche Optionen zur Steuerung des Plugins parat. Bei der Umsetzung der Software hat sich der Entwickler reichlich Gedanken über die Benutzerführung gemacht: Die Einstellungsmöglichkeiten der WordPress-Erweiterung sollten verständlich und nach Möglichkeit ohne Handbücher bedienbar sein. Aus diesem Grund beinhaltet die Optionsseite lediglich die relevanten Schalter. Die restlichen Funktionen verbergen sich unter der Haube der Lösung und greifen automatisch bei Bedarf.
+		</p>
+		
+		<div>
+			<p>
+				<h4>
+					Option: Aufbewahrungsort für Cache
+				</h4>
+				Cachify beherrscht drei unterschiedliche Methoden der Cache-Verwaltung, die dem Nutzer in Form einer Auswahlbox bereitgestellt sind:
+			</p>
+			<p>
+				<strong>1.</strong> Aufbewahrung in der Datenbank
+				<br />
+				<strong>2.</strong> Aufbewahrung im APC-Modul
+				<br />
+				<strong>3.</strong> Aufbewahrung auf der Server-HDD
+			</p>
+		</div>
+		
+		<p>
+			Jede der Methoden hat ihre wahre Stärke daran, Blogseiten im Ausgangsformat zu lagern und auf Verlangen auszuliefern. Doch woran liegen genau die Unterschiede zwischen den verfügbaren Arten untereinander und zwar aus der Sicht einer performanten Webseite? Eine Auflistung zeigt Pluspunkte, Diagramme schildern den Verlauf einer Browser-Anfrage zum Server.
+		</p>
+		
+		<div>
+			<p>
+				<h4>
+					1. Cache in der WordPress-Datenbank
+				</h4>
+				<em>A. Vorteile</em>
+				<br />
+				&bull; Keine Anpassung von <em>.htaccess</em>
+			</p>
+			<p>
+				<em>B. Nachteile</em>
+				<br />
+				&bull; Ansteigende Datenbankgröße
+				<br />
+				&bull; Ausführung von WordPress
+				<br />
+				&bull; Unzählige Datenbankzugriffe
+				<br />
+				&bull; Start des PHP-Interpreters
+			</p>
+			
+			<table class="icons" width="100%" align="center">
+				<tr>
+					<td>
+						<img src="img/chrome.png" alt="Chrome" />
+					</td>
+					<td>
+						<img src="img/arrow.png" alt="Pfeil" />
+					</td>
+					<td>
+						<img src="img/cloud.png" alt="Cloud" />
+					</td>
+					<td>
+						<img src="img/arrow.png" alt="Pfeil" />
+					</td>
+					<td>
+						<img src="img/wordpress.png" alt="WordPress" />
+					</td>
+					<td>
+						<img src="img/arrow.png" alt="Pfeil" />
+					</td>
+					<td>
+						<img src="img/database.png" alt="Datenbank" />
+					</td>
+					<td>
+						<img src="img/arrow.png" alt="Pfeil" />
+					</td>
+					<td>
+						<img src="img/chrome.png" alt="Chrome" />
+					</td>
+				</tr>
+			</table>
+			<center>
+				<em>
+					Browser &rarr; Server &rarr; WP &rarr; DB &rarr; Browser
+				</em>
+			</center>
+		</div>
+		
+		<div>
+			<p>
+				<h4>
+					2. Cache im APC-Modul
+				</h4>
+				<em>A. Vorteile</em>
+				<br />
+				&bull; Schneller Shared-Speicher
+				<br />
+				&bull; Keine Ausführung von WordPress
+				<br />
+				&bull; Keine Datenbankzugriffe
+			</p>
+			<p>
+				<em>B. Nachteile</em>
+				<br />
+				&bull; APC-Modul vorausgesetzt
+				<br />
+				&bull; Anpassung von <em>.htaccess</em>
+				<br />
+				&bull; Einschränkung bei Cronjobs
+				<br />
+				&bull; Start des PHP-Interpreters
+			</p>
+			
+			<table class="icons" width="100%" align="center">
+				<tr>
+					<td>
+						<img src="img/chrome.png" alt="Chrome" />
+					</td>
+					<td>
+						<img src="img/arrow.png" alt="Pfeil" />
+					</td>
+					<td>
+						<img src="img/cloud.png" alt="Cloud" />
+					</td>
+					<td>
+						<img src="img/arrow.png" alt="Pfeil" />
+					</td>
+					<td>
+						<img src="img/php.png" alt="PHP" />
+					</td>
+					<td>
+						<img src="img/arrow.png" alt="Pfeil" />
+					</td>
+					<td>
+						<img src="img/chrome.png" alt="Chrome" />
+					</td>
+				</tr>
+			</table>
+			<center>
+				<em>
+					Browser &rarr; Server &rarr; PHP &rarr; Browser
+				</em>
+			</center>
+		</div>
+		
+		<div>
+			<p>
+				<h4>
+					3. Cache auf der Server-Festplatte
+				</h4>
+				<em>A. Vorteile</em>
+				<br />
+				&bull; Keine Ausführung von WordPress
+				<br />
+				&bull; Keine Datenbankzugriffe
+				<br />
+				&bull; Kein PHP-Interpreter
+			</p>
+			<p>
+				<em>B. Nachteile</em>
+				<br />
+				&bull; Anpassung von <em>.htaccess</em>
+				<br />
+				&bull; Einschränkung bei Cronjobs
+			</p>
+			
+			<table class="icons" width="100%" align="center">
+				<tr>
+					<td>
+						<img src="img/chrome.png" alt="Chrome" />
+					</td>
+					<td>
+						<img src="img/arrow.png" alt="Pfeil" />
+					</td>
+					<td>
+						<img src="img/cloud.png" alt="Cloud" />
+					</td>
+					<td>
+						<img src="img/arrow.png" alt="Pfeil" />
+					</td>
+					<td>
+						<img src="img/chrome.png" alt="Chrome" />
+					</td>
+				</tr>
+			</table>
+			<center>
+				<em>
+					Browser &rarr; Server &rarr; Browser
+				</em>
+			</center>
+		</div>
+		
+		<div>
+			<p>
+				<h4>
+					Fazit der Gegenüberstellung
+				</h4>
+				Die Cache-Aufbewahrung auf der Server-Festplatte ist Dank der äußerst schnellen Auslieferung der Seiten das präferierte Verfahren. Dabei wird auf jegliche Dynamik verzichtet und dem Server die Rückgabe der statisch abgelegten Blogseiten überlassen. Die Datenbank und Server-Ressourcen werden zusätzlich geschont, da PHP und somit auch WordPress abgeschaltet bleiben.
+			</p>
+			<p>
+				Welche der Methoden vom Administrator tatsächlich gewählt wird und im Blog Verwendung findet, entscheiden die an WordPress gesetzten Ansprüche: Sind interne Cronjobs für zum Beispiel geplante Artikel von Relevanz, kommt lediglich Datenbank als Speicherort in Frage. Ein Workaround (= Umweg) behebt jedoch auch diese Lücke mit Bravour, wie die nachfolgende Anleitung verdeutlicht. Wie bereits erwähnt: Je weniger es an automatischen Prozessen benötigt wird, desto größer ist der Performance-Gewinn durch Cachify.
+			</p>
+		
+			<p>
+				<strong>Festplatte als Aufbewahrungsort</strong> wird nachfolgend als primäre Methode zum Einsatz kommen und entsprechend detailliert beschrieben. Andere Speicherungsmodelle (Datenbank und APC) finden in diesem Buch keine weitere Erwähnung und wurden alleine zum Vergleich der Techniken herangezogen.
+			</p>
+			<p>
+				Dennoch können sekundäre Methoden (Datenbank und APC) für die Optimierung der Blogseiten aktiv und vorteilhaft genutzt werden: In Fällen, wo WordPress zwecks Cronjobs bei jedem Seitenaufruf ausgeführt werden muss (was der Performance eh nicht unbedingt gut tut), bietet sich die Datenbank als Speichermedium für Cachify bestens an. Ganz nach dem Motto: Flexibilität + Performance = Gutes „Preis-Leistungsverhältnis“.
+			</p>
+		</div>
+		
+		<div>
+			<p>
+				<h4>
+					Cachify HDD &amp; geplante Beiträge
+				</h4>
+				Eine mögliche Lösung für geplante - also zum späteren Veröffentlichen vorgesehene - WordPress-Beiträge in Kombination mit Cachify HDD ist ein manueller Aufruf der für die Abarbeitung der Blog-Cronjobs zuständige WordPress-Datei <em>wp-cron.php</em>. Diese Datei befindet sich im Hauptverzeichnis einer WordPress-Installation.
+			</p>
+			<p>
+				Die Systemdatei wird keinesfalls händisch im Browser aufgerufen. Vielmehr kann ein Dienstleister wie <a href="http://cronjob.de" target="_blank">http://cronjob.de</a> kostenlos aushelfen und die angesprochene WordPress-Datei in festgelegten Intervallen - ebenfalls als Cronjob - automatisiert starten. Täglich und mehrmals am Tag. Auch bieten zahlreiche Hoster ihren Kunden diese Option kostenfrei an.
+			</p>
+			<p>
+				Szenario aus dem Alltag:
+				<br />&bull; Geplante Beiträge stets auf 8 Uhr eines Tages setzen.
+				<br />&bull; Beim Cronjob-Anbieter den Aufruf der Datei <em>http://meinblog.de/wp-cron.php</em> (Domain gilt anzupassen) auf „täglich um 8:30 Uhr“ stellen.
+			</p>
+			<p>
+				Diese Vorgehensweise garantiert eine Veröffentlichung geplanter Artikel ohne Risiken bei maximaler WordPress-Performance.
+			</p>
+		</div>
+		
+		
+		<h2 id="konfiguration">
+			Konfiguration
+		</h2>
+		
+		<p>
+			Nach der Umstellung des Aufbewahrungsortes für den generierten Cache auf <em>Festplatte</em>, können weitere Optionen definiert werden. Cachify kommt mit empfohlenen Einstellungen daher, sodass eine Abänderung der Plugin-Eigenschaften nicht zwingend notwendig ist.
+		</p>
+		<p>
+			Erfahrene Nutzer können im Plugin bestimmte Seiten anhand ihrer ID-Nummern aus dem Caching-Verfahren ausschließen. Ebenfalls lässt sich ein Ausnahmefilter für konkrete User-Agents konfigurieren und nach dem Speichern anwenden.
+		</p>
+		<p>
+			Die Cache-Gültigkeit in Stunden besitzt bei dieser Speichermethode keine Kraft und gleicht einer Null.
+		</p>
+		<p>
+			Erwähnenswert sind zwei weitere Optionen innerhalb der Plugin-Einstellungen:
+		</p>
+		
+		<div>
+			<p>
+				<h4>
+					Komprimierung der Ausgabe
+				</h4>
+				Cachify versucht überflüssige Zeichen wie Leerzeichen, Umbrüche und Kommentare aus dem erzeugten HTML-Code zu eliminieren, um die Dateigröße weiter zu minimieren. Praktische Funktion, die allerdings je nach WordPress-Theme Layout-Probleme verursachen könnte. Daher sind Blogseiten nach der Aktivierung der Option auf korrekte Darstellung zu kontrollieren. Im Fehlerfall ist der Schalter zur Minimierung der Ausgabe auszuschalten.
+			</p>
+			
+			<p>
+				<h4>
+					Kein Cache für angemeldete Nutzer
+				</h4>
+				Diese Option ist standardmäßig aktiviert, da sehr empfehlenswert. Sie besagt, dass angemeldete Nutzer (dazu zählen Kommentatoren und in WordPress eingeloggte Accounts) immer die Original-Variante einer Webseite sehen und den Cache nie initiieren dürfen. Es wäre fatal, wenn Leser die Ansicht der Blogseiten zu Gesicht bekämen, die ein Blog-Administrator durch seinen Aufruf in den Cache befördert hätte: Die Administrationsbar und Links zu Verwaltungswerkzeugen würden für jedermann sichtbar sein. Und damit genau das nicht passiert, sorgt die aktivierte Option dafür, dass lediglich Endnutzer in einem nicht angemeldeten Zustand den Cache sehen und via Cachify füllen können.
+			</p>
+			
+			<p>
+				Das waren die wichtigen Plugin-Optionen in der Übersicht. Jetzt bitte Änderungen speichern.
+			</p>
+		</div>
+		
+		<p>
+			<img src="img/flag.png" class="flag" alt="Info" />Sollte die Beschreibung der Einstellungen an dieser Stelle nicht ausreichen, verfügt Cachify über eine integrierte Dokumentation, die auf der Seite mit Optionen über die Schaltfläche <em>Hilfe</em> zugänglich ist. Dort befindet sich auch eine Verknüpfung zum ausführlichen Online-Handbuch.
+		</p>
+		
+		<p>
+			<h4>
+				Erweiterung der Datei .htaccess
+			</h4>
+			Nach dem Speichervorgang erscheint ein deutlicher Hinweis auf die notwendige Modifizierung der Server-Konfigurationsdatei. Diese Anpassung erfolgt händisch und ist kein Bestandteil des Plugin-Umfangs. Doch keine Angst vor Eingriffen: Online unter <a href="https://gist.github.com/2027249" target="_blank">https://gist.github.com/2027249</a> steht ein fertiger, universeller Code-Snippet bereit, der auf meisten Server-Installationen mit Apache als Software (ausgenommen PHP als fcgi) reibungslos funktioniert. Gleicherweise wurde ein Snippet für Nginx-Systeme angelegt: <a href="https://gist.github.com/1939164" target="_blank">https://gist.github.com/1939164</a>. Mit Leichtigkeit können diese Schnipsel per Copy&amp;Paste übernommen werden.
+		</p>
+		
+		<p>
+			<img src="img/flag.png" class="flag" alt="Info" />Auf die Einbindung der Snippets an dieser Stelle wurde bewusst verzichtet, um Formatierungs- und Darstellungsfehler auszuschließen.
+		</p>
+		
+		<div>
+			<p>
+				Eine Schritt-für-Schritt-Anleitung bestehend aus durchzuführenden Aufgaben hilft beim Editieren der Systemdatei:
+			</p>
+			<p>
+				&bull; (S)FTP-Anwendung starten
+				<br />&bull; Zum Server-Rootverzeichnis wechseln
+				<br />&bull; Backup der Datei <em>.htaccess</em> anfertigen
+				<br />&bull; Datei <em>.htaccess</em> im Texteditor öffnen
+				<br />&bull; Snippet vor <em># BEGIN WordPress</em> einfügen
+				<br />&bull; Änderungen speichern
+				<br />&bull; Blogseiten auf Funktionsweise prüfen
+			</p>
+		</div>
+		
+		<div>
+			<p>
+				Ab diesem Moment fängt Cachify an, im Browser aufgerufene Webseiten nach und nach dem Cache-Verzeichnis hinzufügen. Das Caching-Prinzip zackig zusammengefasst:
+			</p>
+			<p>
+				<strong>1.</strong> Browser fragt eine Webseite beim Server an
+				<br />
+				<strong>2.</strong> Server schaut, ob die angeforderte Datei im Cache existiert
+				<br />
+				<strong>3a.</strong> Wenn ja, eine direkte Lieferung an den Client erfolgt
+				<br />
+				<strong>3b.</strong> Wenn nicht, wird auf WordPress umgeleitet
+				<br />
+				<strong>4b.</strong> Cachify generiert im Hintergrund ein Abbild der Seite
+			</p>
+		</div>
+		
+		<p>
+			<img src="img/flag.png" class="flag" alt="Info" />Wichtig zu beachten ist die Tatsache, dass in WordPress angemeldete Nutzer - also auch Administratoren - keine Cache-Variante einer Webseite sehen bzw. anstoßen können. Empfehlenswert ist daher ein weiterer Browser, wo ein paralleler Blog-Aufruf ohne eingeloggte Accounts möglich ist. So liefern auch Test-Aufrufe erwartete Ergebnisse.
+		</p>
+		
+		
+		
+		<h2 id="qualitaet">
+			Qualitätssicherung
+		</h2>
+		
+		<p>
+			Der Leistungsnachweis bzw. die Prüfung der korrekten Funktionsweise des Plugins kann auf mehreren Wegen erfolgen:
+		</p>
+		
+		<div>
+			<p>
+				<h4>
+					1. Überprüfung des Cache-Ordners
+				</h4>
+				Cachify lagert Dateien im eigenen Ordner unter <em>wp-content &rarr; cache &rarr; cachify</em>. Dort liegen alle Blogseiten in separaten Unterverzeichnissen. Sind also Unterverzeichnisse mit Artikel-Permalinks im Namen vorhanden, so ist mit der Generierung des Cache-Bestandes alles in bester Ordnung.
+			</p>
+			<p>
+				Fehlt dagegen der ganze Pfad, so gehört die genannte Ordnerstruktur mithilfe einer (S)FTP-Anwendung manuell erstellt. Händisch angelegte Verzeichnisse benötigen zudem Schreibrechte, um Unterordner anlegen zu dürfen.
+			</p>
+			<p>
+				<img src="img/flag.png" class="flag" alt="Info" />Auf dem Dashboard des Administrationsbereiches summiert Cachify die Größe der abgelegten Cache-Dateien. Die abgerundete Zahl wird zugunsten der Performance für 15 Minuten zwischengespeichert.
+			</p>
+		</div>
+		
+		<div>
+			<p>
+				<h4>
+					2. Überprüfung der HTML-Signatur
+				</h4>
+				Blogseiten, die aus dem Cachify Cache kommen, werden am Quelltext-Ende durch eine Signatur gekennzeichnet. Nach diesem Muster:
+			</p>
+			<code>
+				&lt;!-- Cachify | http://bit.ly/cachify
+			</code>
+			<br />
+			<code>
+				HDD Cache @ 01.08.2012 21:23:17 --&gt;
+			</code>
+			<p>
+				In Google Chrome ist die Option <em>Seitenquelltext anzeigen</em> im Menü <em>Anzeigen &rarr; Entwickler</em> zu suchen. In Firefox wiederum unter <em>Extras</em>.
+			</p>
+			<p>
+				<img src="img/flag.png" class="flag" alt="Info" />Wurde in Cachify zudem der Einstellwert zur Minimierung der Ausgabe aktiviert, so sollte der im Browser angezeigte Quelltext in reduzierter Form vorliegen: Die Codeausgabe käme in diesem Fall ohne Umbrüche und unnötige Leerzeichen aus.
+			</p>
+		</div>
+		
+		<div>
+			<p>
+				<h4>
+					3. Überprüfung der Performance
+				</h4>
+				Je nach Größe einer Seite, müsste sich die Ladezeit extrem verbessert haben. In einem Test-Blog mit Twenty Twelve als aktives WordPress-Theme hat sich die Transferzeit zwischen Server und Client um ein zehnfaches reduziert. Auslesen lassen sich solche Vergleichswerte aus Netzwerkanfragen, die in jedem modernen Browser unter Entwickler-Tools zu finden sind.
+			</p>
+			<p>
+				Praktisch: Das kostenfreie Serverstate Plugin (<em>wordpress.org &rarr; serverstate</em>) springt helfend zur Stelle und protokolliert die Veränderung der Server-Antwortzeiten vor und nach WordPress-Optimierungen.
+			</p>
+			<p>
+				<img src="img/flag.png" class="flag" alt="Info" />Veränderungen an Ladezeiten haben keinerlei Auswirkungen auf den Google PageSpeed Score. Nach der Inbetriebsetzung von Cachify verändert sich der Wert dementsprechend in keiner Weise. Eine erfolgreiche Quelltext-Minimierung würde dagegen einen punktuell besseren Score mit sich bringen.
+			</p>
+		</div>
+		
+		
+		
+		<h2 id="indexierung">
+			Indexierung
+		</h2>
+		
+		<p>
+			Sehr wichtig auf die Hinsicht der Suchmaschinenoptimierung ist die Sperrung des Cache-Ordners vor Indexierung durch Google &amp; Co. Andernfalls würden Inhalte aus dem Cache als doppelter Content zu regulären Blog-Inhalten eingestuft. Die Popularität der Website würde herab fallen.
+		</p>
+		<p>
+			Um katastrophale Folgen zu vermeiden, erweitert Cachify die von WordPress automatisch ausgegebene Datei <em>robots.txt</em> um den entscheidenden Zusatz. Wird jedoch eine benutzerdefinierte <em>robots.txt</em> im Hauptverzeichnis des Blogs abgelegt, so muss der Blog-Administrator zwingende Vorkehrungen treffen und die für Suchmaschinen präparierte Datei händisch erweitern. Folgende Zeile gehört eingefügt und trägt dafür Sorge, dass das Cache-Verzeichnis von der Indexierung nicht betroffen wird.
+		</p>
+		<code>
+			Disallow: /wp-content/cache/
+		</code>
+		
+		
+		<h2 id="faq">
+			Fragen &amp; Antworten
+		</h2>
+		
+		<p>
+			<h4>
+				Wann leert Cachify den Cache?
+			</h4>
+			&bull; Beim Veröffentlichen/Editieren von Beiträgen
+			<br />
+			&bull; Beim Veröffentlichen/Editieren von statischen Seiten
+			<br />
+			&bull; Beim Veröffentlichen/Editieren von Custrom Post Types
+			<br />
+			&bull; Beim Klick auf den Cachify Papierkorb in der Administrationsbar
+			<br />
+			&bull; Beim Speichern der Cachify Einstellungen
+			<br />
+			&bull; Beim Speichern der wpSEO Einstellungen
+		</p>
+		
+		<p>
+			<h4>
+				An welche Stelle in .htaccess wird der Cachify Code platziert?
+			</h4>
+			Direkt vor dem WordPress-eigenen Code, welcher durch <em># BEGIN WordPress ... # END WordPress</em> markiert ist.
+		</p>
+		
+		<p>
+			<h4>
+				Die Option <em>Festplatte</em> steht nicht zur Auswahl?
+			</h4>
+			Cachify setzt eine bestimmte Permalink-Struktur voraus. Und zwar muss der Artikelname zwingend ein Bestandteil des Permalinks sein. Der Permalink muss mit einem Schrägstrich enden. Beispiel: <em>http://domain.de/mein-artikel/</em>
+		</p>
+		
+		<p>
+			<h4>
+				Warum wird kein Cache-Ordner erstellt?
+			</h4>
+			Cachify versucht den für die Cache-Aufbewahrung notwendigen Ordner selbständig anzulegen. Gelingt das Vorhaben nicht, muss der Blog-Administrator die Verzeichnisse manuell anlegen und mit Schreibrechten versehen: <em>wp-content &rarr; cache &rarr; cachify</em>
+		</p>
+		
+		<p>
+			<h4>
+				Mein Blog befindet sich im Unterordner. Etwas zu beachten?
+			</h4>
+			In diesem Fall gehören Pfade des für <em>.htaccess</em> vorgesehenen Codes entsprechend angepasst. Ein Beispiel befindet sich auf Gist unter <a href="https://gist.github.com/1949056" target="_blank">https://gist.github.com/1949056</a>
+		</p>
+		
+		<p>
+			<h4>
+				Nur bestimmte Teile einer Webseite cachen lassen - machbar?
+			</h4>
+			Cachify befördert ausnahmslos die komplette Blogseite in den Cache. Eine Aufteilung der Inhalte ist daher nicht möglich.
+		</p>
+		
+		<p>
+			<h4>
+				Gibt es Seiten, die nie gecached werden?
+			</h4>
+			&bull; Passwort-geschützte Seiten
+			<br />
+			&bull; Feeds
+			<br />
+			&bull; Trackbacks
+			<br />
+			&bull; Robots
+			<br />
+			&bull; Vorschau
+			<br />
+			&bull; Mobile-Themes
+			<br />
+			&bull; Suche
+			<br />
+			&bull; Fehlerseiten
+		</p>
+		
+		<p>
+			<h4>
+				Es sind noch weitere Cache-Plugins im Einsatz. Gibt es Konflikte?
+			</h4>
+			In der Regel übernimmt Cachify das vollständige Caching der Blogseiten. Andere Cache-Lösungen in Form von Plugins werden dadurch überflüssig und sollten nach Möglichkeit deaktiviert werden.
+		</p>
+	</body>
+</html>

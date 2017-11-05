@@ -1,0 +1,34 @@
+div {
+	margin: 0;
+	padding: 0;
+}
+p {
+	xmargin-top: 1em;
+	text-indent: 0;
+}
+h1 {
+	text-align: right;
+	page-break-before: always;
+}
+h3 {
+	margin-top: 2em;
+}
+h4 {
+	margin-bottom: 0.4em;
+}
+ul {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+code {
+	font-size: 80%;
+}
+
+table.icons td img {
+	width: 9%;
+}
+
+.flag {
+	width: 0.8em;
+	margin: 0 0.4em 0 0;
+}
