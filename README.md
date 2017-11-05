@@ -2,7 +2,7 @@
 
 Frisch aus dem Archiv: HTML-Variante des Handbuches "WordPress-Performance".
 
-[Zum Inhaltsverzeichnis](https://github.com/sergejmueller/wordpress-performance-openbook/blob/master/toc.html)
+[Download als ZIP](https://github.com/sergejmueller/wordpress-performance-openbook/archive/master.zip) (`toc.html` als Einstieg)
 
 ### Version
 Ausgabe 1.0 / August 2012
